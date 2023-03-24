@@ -1,6 +1,5 @@
 package ohm.softa.a02;
 
-import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.Data;
 import lombok.Getter;
 
