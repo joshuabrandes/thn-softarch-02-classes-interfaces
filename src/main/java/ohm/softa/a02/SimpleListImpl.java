@@ -2,8 +2,10 @@ package ohm.softa.a02;
 
 import jdk.nashorn.internal.objects.annotations.Setter;
 import lombok.Data;
+import lombok.Getter;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * @author Peter Kurfer
@@ -14,7 +16,7 @@ public class SimpleListImpl implements SimpleList {
 
     Element head = null;
 
-	// TODO: Implement the required methods.
+    // TODO: Implement the required methods.
 
     private static class Element {
         Object item;
@@ -23,15 +25,29 @@ public class SimpleListImpl implements SimpleList {
 
     class SimpleIteratorImpl implements Iterator<Element> {
 
+        @Getter
+        private Element current;
+
+        public SimpleIteratorImpl() {
+            // Initialisiere current mit dem Kopf der Liste
+            current = head;
+        }
+
         @Override
         public boolean hasNext() {
-            return next != null;
+            return current != null;
         }
 
         @Override
         public Element next() {
-            return ;
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            Element result = current;
+            current = current.next;
+            return result;
         }
     }
+
 
 }
